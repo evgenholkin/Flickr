@@ -29,11 +29,13 @@ class MainViewController: UIViewController {
     
     var dateInfo = ""
     var dateInfo2 = ""
+    var tags = ""
     @IBOutlet weak var infoButton: UIButton!
     @IBAction func infoButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "InfoScreen") as! InfoViewController
         vc.publishDateInfo = self.dateInfo
         vc.takenDateInfo = self.dateInfo2
+        vc.tags = self.tags
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = self
         self.present(vc, animated: true, completion: nil)
@@ -146,6 +148,7 @@ extension MainViewController: UICollectionViewDataSource {
         
         self.dateInfo = photosArray[indexPath.row].published ?? "No date"
         self.dateInfo2 = photosArray[indexPath.row].date_taken ?? "No date"
+        self.tags = photosArray[indexPath.row].tags ?? ""
         
         view.backgroundColor = .darkGray
         UIView.animate(withDuration: 1) {

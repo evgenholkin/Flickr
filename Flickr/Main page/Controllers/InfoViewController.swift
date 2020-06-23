@@ -14,10 +14,13 @@ class InfoViewController: UIViewController {
     
     var publishDateInfo = ""
     var takenDateInfo = ""
+    var tags = ""
     
 //MARK: - Outlets
     
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var tagsListLable: UILabel!
+    @IBOutlet weak var separatorTags: UIView!
     @IBOutlet weak var publishingDateLabel: UILabel!
     @IBOutlet weak var takenDateLabel: UILabel!
     @IBOutlet weak var takenDate: UILabel!
@@ -34,9 +37,19 @@ class InfoViewController: UIViewController {
         publishingDate.text = dateDecoder(type: 1, date: publishDateInfo)
         takenDate.text = dateDecoder(type: 2, date: takenDateInfo)
         
+        configureLayout()
     }
     
     //MARK: - Methods
+    
+    private func configureLayout() {
+        if tags == "" {
+            separatorTags.removeFromSuperview()
+            tagsListLable.removeFromSuperview()
+        } else {
+            tagsListLable.text = "#" + tags.replacingOccurrences(of: " ", with: " #")
+        }
+    }
     
     private func dateDecoder(type: Int, date: (String)) -> String {
         let dateFormatter = DateFormatter()

@@ -13,6 +13,7 @@ struct Items: Codable {
     let published: String?
     let date_taken: String?
     let media: PhotoLink?
+    let tags: String?
 }
 
 struct PhotoLink: Codable {
